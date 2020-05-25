@@ -32,9 +32,9 @@ export class PulseLabs implements Plugin {
   }
 
   async logData(handleRequest: HandleRequest) {
-    if (isAlexaSkill()) {
+    if (handleRequest.jovo.constructor.name === 'AlexaSkill') {
       await this.pulse.logData(handleRequest.jovo!.$request, handleRequest.jovo!.$response);
-    } else if (isGoogleAction()) {
+    } else if (handleRequest.jovo.constructor.name === 'GoogleAction') {
       await this.pulse.logGoogleData(handleRequest.jovo!.$request, handleRequest.jovo!.$response);
     }
   }
