@@ -32,13 +32,10 @@ export class PulseLabs implements Plugin {
   }
 
   async logData(handleRequest: HandleRequest) {
-    // await this.pulse.logData(handleRequest.jovo!.$request, handleRequest.jovo!.$response);
-    async logData(handleRequest: HandleRequest) {
-     if(isAlexaSkill()) {
-         await this.pulse.logData(handleRequest.jovo!.$request, handleRequest.jovo!.$response);
-     } else if(isGoogleAction()) {
-         await this.pulse.logGoogleData(handleRequest.jovo!.$request, handleRequest.jovo!.$response);
-     }
+    if (isAlexaSkill()) {
+      await this.pulse.logData(handleRequest.jovo!.$request, handleRequest.jovo!.$response);
+    } else if (isGoogleAction()) {
+      await this.pulse.logGoogleData(handleRequest.jovo!.$request, handleRequest.jovo!.$response);
     }
   }
 }
