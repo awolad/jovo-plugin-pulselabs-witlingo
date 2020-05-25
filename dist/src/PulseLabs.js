@@ -22,11 +22,11 @@ class PulseLabs {
         app.on('after.response', this.logData.bind(this));
     }
     async logData(handleRequest) {
-        if (handleRequest.jovo.constructor.name === 'AlexaSkill') {
+        if (handleRequest.jovo.$alexaSkill) {
             await this.pulse.logData(handleRequest.jovo.$request, handleRequest.jovo.$response);
         }
-        else if (handleRequest.jovo.constructor.name === 'GoogleAction') {
-            await this.pulse.logGoogleData(handleRequest.jovo.$request, handleRequest.jovo.$response);
+        else if (handleRequest.jovo.$googleAction) {
+            await this.pulse.logGoogleData(handleRequest.jovo.$request, handleRequest.jovo.$response, handleRequest.jovo.$user.getId());
         }
     }
 }
